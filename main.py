@@ -1,6 +1,6 @@
 import os
 
-
+## Change
 # Считываем директорию из файла
 with open("directory.txt", "r") as f:
     ROOT_DIRECTORY = f.read().strip()
