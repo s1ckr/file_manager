@@ -1,6 +1,10 @@
 import os
 
-global ROOT_DIRECTORY, WORKING_DIRECTORY
+with open("directory.txt", "r") as f:
+    ROOT_DIRECTORY = f.read().strip()
+    if ROOT_DIRECTORY == "":
+        ROOT_DIRECTORY = os.getcwd()
+    WORKING_DIRECTORY = ROOT_DIRECTORY
 
 
 def create_folder(folder_name):
@@ -97,11 +101,7 @@ def rename_file(old_name, new_name):
         print(f"Файл '{old_name}' не найден.")
 
 def main():
-    with open("directory.txt", "r") as f:
-        ROOT_DIRECTORY = f.read().strip()
-        if ROOT_DIRECTORY == "":
-            ROOT_DIRECTORY = os.getcwd()
-        WORKING_DIRECTORY = ROOT_DIRECTORY
+
 
     while True:
         print("\nТекущая рабочая директория:", WORKING_DIRECTORY)
