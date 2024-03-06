@@ -1,7 +1,5 @@
 import os
 
-## Change
-# Считываем директорию из файла
 with open("directory.txt", "r") as f:
     ROOT_DIRECTORY = f.read().strip()
     if ROOT_DIRECTORY == "":
@@ -27,8 +25,12 @@ def delete_folder(folder_name):
 def move_to_folder(folder_name):
     global WORKING_DIRECTORY
     if folder_name == "..":
-        WORKING_DIRECTORY = os.path.dirname(WORKING_DIRECTORY)
-        print("Перешли в родительскую директорию.")
+        new_path = os.path.dirname(WORKING_DIRECTORY)
+        if len(new_path) > len(ROOT_DIRECTORY):
+            WORKING_DIRECTORY = new_path
+            print("Перешли в родительскую директорию.")
+        else:
+            print(f"Папка '{new_path}' выше корневой.")
     else:
         new_path = os.path.join(WORKING_DIRECTORY, folder_name)
         if os.path.isdir(new_path):
